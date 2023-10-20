@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KataGameOfLife;
 
-namespace GameOfLifeTests
+namespace KataGameOfLifeTests
 {
     [TestClass]
-    public class GameOfLifeBoardTest
+    public class GameOfLifeTest
     {
         [TestMethod]
         public void given_neigborhood_should_return_more()
@@ -26,12 +27,12 @@ namespace GameOfLifeTests
             {
                 for (int j = 0; j < netx_ecosystem_expected.GetLength(1); j++)
                 {
-                    if (netx_ecosystem_expected[i, j]) list.Add(new Cell(GameOfLife.State.Alive, i, j));
-                    else { list.Add(new Cell(GameOfLife.State.Dead, i, j)); }
+                    if (netx_ecosystem_expected[i, j]) list.Add(new Cell(State.Alive, i, j));
+                    else { list.Add(new Cell(State.Dead, i, j)); }
                 }
             }
 
-            GameOfLifeBoard board = new GameOfLifeBoard(ecosystem);
+            GameOfLife board = new GameOfLife(ecosystem);
             List<Cell> next = board.next();
             for (int i = 0; i < list.Count; i++)
             {
@@ -55,12 +56,12 @@ namespace GameOfLifeTests
             {
                 for (int j = 0; j < netx_ecosystem_expected.GetLength(1); j++)
                 {
-                    if (netx_ecosystem_expected[i, j]) list.Add(new Cell(GameOfLife.State.Alive, i, j));
-                    else { list.Add(new Cell(GameOfLife.State.Dead, i, j)); }
+                    if (netx_ecosystem_expected[i, j]) list.Add(new Cell(State.Alive, i, j));
+                    else { list.Add(new Cell(State.Dead, i, j)); }
                 }
             }
 
-            GameOfLifeBoard board = new GameOfLifeBoard(ecosystem);
+            GameOfLife board = new GameOfLife(ecosystem);
             List<Cell> next = board.next();
             for (int i = 0; i < list.Count; i++)
             {
@@ -84,12 +85,12 @@ namespace GameOfLifeTests
             {
                 for (int j = 0; j < netx_ecosystem_expected.GetLength(1); j++)
                 {
-                    if (netx_ecosystem_expected[i, j]) list.Add(new Cell(GameOfLife.State.Alive, i, j));
-                    else { list.Add(new Cell(GameOfLife.State.Dead, i, j)); }
+                    if (netx_ecosystem_expected[i, j]) list.Add(new Cell(State.Alive, i, j));
+                    else { list.Add(new Cell(State.Dead, i, j)); }
                 }
             }
 
-            GameOfLifeBoard board = new GameOfLifeBoard(ecosystem);
+            GameOfLife board = new GameOfLife(ecosystem);
             List<Cell> next = board.next();
             for (int i = 0; i < list.Count; i++)
             {

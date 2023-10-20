@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameOfLife\GameOfLife.csproj" />
+    <ProjectReference Include="..\GameOfLife\KataGameOfLife.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Dynamic;
 using System.Runtime.Serialization.Formatters;
-using GameOfLife;
-public class GameOfLifeBoard
+using KataGameOfLife;
+public class GameOfLife
 {
 	private List<Cell> ActualGen = new List<Cell>();
     private List<Cell> NextGen = new List<Cell>();
-    public GameOfLifeBoard(bool[,] ecosystem)
+    Board board;
+    public GameOfLife(bool[,] ecosystem)
 	{
 		for (int i = 0; i < ecosystem.GetLength(0); i++)
 		{
@@ -16,28 +17,16 @@ public class GameOfLifeBoard
                 else { ActualGen.Add(new Cell(State.Dead, i, j)); }
             }
 		}
+        board = new Board(ActualGen);
 	}
-    private int Neighborhood(Cell cell)
-    {
-        int NeighbohrdsAlive = 0;
-        
-        foreach(Cell possible_neighborh in ActualGen) 
-        {
-            if (possible_neighborh == cell) continue;
-            if(possible_neighborh.IsAlive == State.Alive) 
-            {
-                if (cell.IsNeighbohr(possible_neighborh)) { NeighbohrdsAlive++; }
-            }
-        }
-        return NeighbohrdsAlive;
-    }
+    
     
     public List<Cell> next()
 	{
         NextGen.Clear();
         foreach (Cell cell in ActualGen)
         {
-            int population = Neighborhood(cell);
+            int population = board.Neighborhood(cell);
             if(cell.IsAlive==State.Dead)
             {
                 if(population == 3) 
@@ -51,7 +40,6 @@ public class GameOfLifeBoard
             }
             else
             {
-                Console.WriteLine($"population: {population.ToString()}");
                 if(population < 2 || population > 3)
                 {
                     NextGen.Add(new Cell(State.Dead, cell.X, cell.Y));
@@ -62,7 +50,7 @@ public class GameOfLifeBoard
                 }
             }
         }
-        ActualGen = NextGen;
-        return ActualGen;
+        board.updateBoard(NextGen);
+        return NextGen;
     }
 }

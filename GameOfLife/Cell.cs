@@ -1,4 +1,4 @@
-﻿using GameOfLife;
+﻿using KataGameOfLife;
 using System;
 
 public class Cell
