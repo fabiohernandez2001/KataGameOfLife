@@ -10,7 +10,7 @@ namespace GameOfLifeTests
     public class GameOfLifeBoardTest
     {
         [TestMethod]
-        public void given_neigborhood_should_return_nex_generation()
+        public void given_neigborhood_should_return_more()
         {
             bool[,] ecosystem = new bool[,] {
                 {  false, true, false},
@@ -68,7 +68,7 @@ namespace GameOfLifeTests
             }
         }
         [TestMethod]
-        public void given_neigborhood_should_return_next()
+        public void given_neigborhood_should_return_lower()
         {
             bool[,] ecosystem = new bool[,] {
                 {  true, true, true},
