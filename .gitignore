@@ -2,3 +2,4 @@
 .vscode
 obj/
 bin/
+/GameOfLife/GameOfLife.sln.DotSettings.user
