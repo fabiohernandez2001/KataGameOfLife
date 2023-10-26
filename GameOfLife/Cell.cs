@@ -1,32 +1,52 @@
-﻿using KataGameOfLife;
-using System;
-
-public class Cell
+﻿
+namespace KataGameOfLife;
+public class Cell : ICloneable
 {
-	private State isAlive;
+	private State state;
 	private int x;
 	private int y;
-	public Cell(State isAlive, int x, int y)
+	public Cell(bool isAlive, int x, int y)
 	{
-		this.isAlive = isAlive;
-		this.x = x;	
+        this.state = isAlive? State.Alive: State.Dead;
+        this.x = x;	
 		this.y = y;
 	}
-	public State IsAlive { get { return this.isAlive; } }
-	public int X { get{ return this.x; } }
-    public int Y { get { return this.y; } }
-	public bool IsNeighbohr(Cell cell)
+	public bool IsAlive() {  return this.state == State.Alive;  }
+
+	public bool IsNeighbohr(Cell otherCell)
 	{
-		int distx = Math.Abs(cell.X - this.X);
-		int disty = Math.Abs(cell.Y - this.Y);
+		int distx = Math.Abs(otherCell.x - this.x);
+		int disty = Math.Abs(otherCell.y - this.y);
 		if (distx <= 1 && disty <= 1) { return true; }
 		return false;
 	}
-    public override bool Equals(object? cell)
+    public override bool Equals(object? obj)
     {
-		if (cell == null || cell.GetType() != typeof(Cell)) return false;
-		Cell cell_cast = (Cell)cell;
-		if (cell_cast.X == this.x && cell_cast.Y == this.y && cell_cast.isAlive == this.isAlive) {  return true; }
-		else {  return false; }
+		if (obj == null || obj.GetType() != typeof(Cell)) return false;
+		return Equals(obj as Cell);
+    }
+
+    public void UpdateState(int population)
+    {
+        if (IsAlive() && (population < 2 || population > 3))
+        {
+            this.state = State.Dead;
+        }
+        if (!IsAlive() && population == 3)
+        {
+            this.state = State.Alive;
+        }
+    }
+
+	private bool Equals(Cell otherCell)
+	{
+		return this.x == otherCell.x
+			&& this.y == otherCell.y
+			&& this.state == otherCell.state;
+	}
+
+    public object Clone()
+    {
+        return new Cell(this.IsAlive(), x, y);
     }
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KataGameOfLife
+﻿namespace KataGameOfLife
 {
-    public enum State:int
+    public enum State
     {
-        Alive=1,
-        Dead=0
+        Alive,
+        Dead
     }
 }
